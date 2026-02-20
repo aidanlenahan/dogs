@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BNM5R1YZEC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-BNM5R1YZEC');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Professional dog walking services in Monmouth County, NJ. 5+ years experience, 40+ happy dogs walked. Trusted, reliable care for your furry family member.">
+  <meta name="keywords" content="dog walking, Monmouth County, NJ, pet care, dog walker, Red Bank, professional dog walking">
+  <meta property="og:title" content="Lenahan Dog Services - Professional Dog Walking">
+  <meta property="og:description" content="Professional dog walking in Monmouth County, NJ. 5+ years experience with 40+ happy dogs.">
+  <meta property="og:url" content="https://dogs.aidanlenahan.com">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Lenahan Dog Services - Professional Dog Walking</title>
+</head>
+<body>
+
+  <header>
+    <div class="header-content">
+      <img src="favicon.png" alt="Lenahan Dog Services" class="header-favicon">
+      <h1>Lenahan Dog Services</h1>
+      <p class="tagline">Trusted, local, reliable dog walking for your furry family member</p>
+      <div class="contact-dropdown">
+        <button class="contact-icon-btn" onclick="toggleContactDropdown()" aria-label="Contact">
+          <img id="contactIcon" src="img/icons/contact.svg" alt="Contact" />
+        </button>
+        <div class="contact-dropdown-menu" id="contactDropdown">
+          <a href="mailto:aidan@aidanlenahan.com" class="dropdown-item">
+            <span class="dropdown-label">Email</span>
+            <span class="dropdown-value">aidan@aidanlenahan.com</span>
+          </a>
+          <a href="https://facebook.com/lenahanaidan" target="_blank" class="dropdown-item">
+            <span class="dropdown-label">Facebook</span>
+            <span class="dropdown-value">facebook.com/lenahanaidan</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="stats-container">
+      <div class="stat">
+        <h2>40+</h2>
+        <p>Dogs Walked</p>
+      </div>
+      <div class="stat">
+        <h2>5+</h2>
+        <p>Years Experience</p>
+      </div>
+      <div class="stat">
+        <h2>120</h2>
+        <p>Max Weight (lbs)</p>
+      </div>
+    </div>
+  </section>
+
+  <main class="content-container">
+    <section class="main-section">
+      <div class="about-section">
+        <h2>About Me</h2>
+        <p>Hello, my name is <strong>Aidan Lenahan</strong>. I am a local high school senior honors student. Since 2021, I've walked over <strong>40 dogs</strong> and have loved every moment of it. My genuine passion for dogs drives everything I do. I have experience with dogs of all sizes—from small breeds to dogs as heavy as 120 lbs—and have handled up to 4 dogs at a time.</p>
+        <p>Your dog's safety, happiness, and exercise are my top priorities. I treat every dog I walk like my own, like family.</p>
+        <p>I offer competitive pricing and a very flexible schedule to those in the <strong>Monmouth County, NJ Peninsula area</strong> with the most dedicated care.</p>
+      </div>
+
+      <div class="services-section">
+        <h2>Services</h2>
+        <div class="service-cards">
+          <div class="service-card">
+            <h3>Traditional Walking</h3>
+            <p>One-on-one attention for your dog with your choice of routes and pacing.</p>
+          </div>
+          <div class="service-card">
+            <h3>Play Time</h3>
+            <p>I love playing fetch, tug of war, or just running around with dogs. Your dog will have loads of fun (and so will I)!</p>
+          </div>
+          <div class="service-card">
+            <h3>Flexible Scheduling</h3>
+            <p>Available for regular walks or occasional needs that fit your schedule.</p>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="gallery-section">
+        <h2>Happy Dogs I've Walked</h2>
+        <div class="collage-container">
+          <!-- Collage images will be injected here by JavaScript -->
+        </div>
+        <p class="gallery-note">Photos refresh on each visit. Your dog could be featured here too!</p>
+      </div>
+
+      <div class="reviews-section">
+        <h2>Client Reviews</h2>
+        <p class="coming-soon">Client reviews coming soon!</p>
+        <!-- <div class="reviews-container">
+          <div class="review-card">
+            <p class="review-text">"Aidan is fantastic with our golden retriever. Always reliable and our dog is so excited when he arrives!"</p>
+            <p class="review-author">— Local Dog Owner</p>
+          </div>
+          <div class="review-card">
+            <p class="review-text">"Professional, punctual, and clearly loves what he does. We trust him completely with our two dogs."</p>
+            <p class="review-author">— Satisfied Client</p>
+          </div>
+          <div class="review-card">
+            <p class="review-text">"Our dog comes back from walks happy and tired. Couldn't ask for better care!"</p>
+            <p class="review-author">— Happy Customer</p>
+          </div>
+        </div> -->
+      </div>
+
+      <div class="cta-section">
+        <h2>Ready to Book a Walk?</h2>
+        <p>Get in touch to discuss your dog walking needs</p>
+        <div class="button-container">
+          <button class="custom-btn" onclick="email()">Email Me</button>
+          <button class="nav-btn" onclick="fb()">Facebook</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Lenahan Dog Services. All rights reserved. <a href="https://aidanlenahan.com" target="_blank" rel="noopener noreferrer">Back to aidanlenahan.com</a></p>
+  </footer>
+
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light mode">
+    <img id="themeIcon" src="img/icons/light.png" alt="Toggle theme" />
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+<!-- TO DO:
+- Personal photo in about me
+- Implement client testimonials
+- Add more photos to the gallery
+
+-->
