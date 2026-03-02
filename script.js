@@ -181,6 +181,36 @@ function handleContactHash() {
 // Listen for hash changes
 window.addEventListener('hashchange', handleContactHash);
 
+// GPS Modal Functions
+function openGPSModal() {
+  const modal = document.getElementById('gpsModal');
+  modal.style.display = 'block';
+  // Prevent body scroll when modal is open
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGPSModal() {
+  const modal = document.getElementById('gpsModal');
+  modal.style.display = 'none';
+  // Restore body scroll
+  document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside of modal content
+window.addEventListener('click', function(event) {
+  const modal = document.getElementById('gpsModal');
+  if (event.target === modal) {
+    closeGPSModal();
+  }
+});
+
+// Close modal with Escape key
+window.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeGPSModal();
+  }
+});
+
 // Generate the collage on page load and handle #contact hash
 document.addEventListener('DOMContentLoaded', function() {
   loadTheme();

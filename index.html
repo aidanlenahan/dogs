@@ -86,8 +86,13 @@
             <p>I love playing fetch, tug of war, or just running around with dogs. Your dog will have loads of fun (and so will I)!</p>
           </div>
           <div class="service-card">
-            <h3>Flexible Scheduling</h3>
-            <p>Available for regular walks or occasional needs that fit your schedule.</p>
+            <div class="service-card-header">
+              <h3>GPS Tracking</h3>
+              <button class="info-btn" onclick="openGPSModal()" aria-label="GPS Tracking Info">
+                <img src="img/icons/info.png" alt="Info" />
+              </button>
+            </div>
+            <p>After each walk, you can opt in to receive a GPS map of your dog's route and activity.</p>
           </div>
         </div>
       </div>
@@ -140,6 +145,18 @@
     <img id="themeIcon" src="img/icons/light.png" alt="Toggle theme" />
   </button>
 
+  <!-- GPS Tracking Info Modal -->
+  <div id="gpsModal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeGPSModal()" aria-label="Close modal">&times;</button>
+      <p>If you opt-in, after each walk, you will receive an interactive GPS map similar to this one below. To interact fully with this, please <a href="https://www.strava.com/activities/17386078306" target="_blank" rel="noopener noreferrer">click here</a>.</p>
+      <div class="strava-embed-container">
+        <div class="strava-embed-placeholder" data-embed-type="activity" data-embed-id="17386078306" data-style="standard" data-from-embed="false"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://strava-embeds.com/embed.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
