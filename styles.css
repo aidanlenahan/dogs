@@ -537,6 +537,24 @@ header {
   font-weight: 500;
 }
 
+.read-more-btn {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  margin-bottom: 0.5rem;
+  text-decoration: underline;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.read-more-btn:hover {
+  opacity: 1;
+}
+
 /* CTA Section */
 .cta-section {
   text-align: center;

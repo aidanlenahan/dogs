@@ -211,6 +211,25 @@ window.addEventListener('keydown', function(event) {
   }
 });
 
+// Toggle review read more/less
+function toggleReview(button) {
+  const reviewCard = button.closest('.review-card');
+  const ellipsis = reviewCard.querySelector('.review-preview:last-of-type');
+  const fullText = reviewCard.querySelector('.review-full');
+  
+  if (fullText.style.display === 'none') {
+    // Expand to show full review
+    ellipsis.style.display = 'none';
+    fullText.style.display = 'inline';
+    button.textContent = 'Read less';
+  } else {
+    // Collapse to preview
+    ellipsis.style.display = 'inline';
+    fullText.style.display = 'none';
+    button.textContent = 'Read more';
+  }
+}
+
 // Generate the collage on page load and handle #contact hash
 document.addEventListener('DOMContentLoaded', function() {
   loadTheme();
