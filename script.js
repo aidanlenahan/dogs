@@ -209,10 +209,16 @@ function openGPSModal() {
 }
 
 function closeGPSModal() {
+  trackEvent('gps_info_close');
   const modal = document.getElementById('gpsModal');
   modal.style.display = 'none';
   // Restore body scroll
   document.body.style.overflow = 'auto';
+}
+
+// Outbound link click tracking
+function trackOutboundClick(destination) {
+  trackEvent('outbound_click', { destination });
 }
 
 // Close modal when clicking outside of modal content
