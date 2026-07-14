@@ -1,9 +1,21 @@
+// GA4 event tracking helper
+function trackEvent(name, params = {}) {
+  if (typeof gtag === 'function') {
+    gtag('event', name, params);
+  }
+}
+
+function trackContactClick(method, location) {
+  trackEvent('contact_click', { method, link_location: location });
+}
+
 // Theme Toggle Functionality
 function toggleTheme() {
   const root = document.documentElement;
   const themeIcon = document.getElementById('themeIcon');
   const currentTheme = root.classList.contains('light-mode') ? 'dark' : 'light';
-  
+  trackEvent('theme_toggle', { theme: currentTheme });
+
   // Fade out icon
   themeIcon.style.opacity = '0';
   
@@ -81,12 +93,14 @@ function generateCollage() {
 }
 
 // Email function
-function email() {
+function email(location = 'cta') {
+  trackContactClick('email', location);
   window.location.href = "mailto:aidan@aidanlenahan.com";
 }
 
 // Facebook navigation function
-function fb() {
+function fb(location = 'cta') {
+  trackContactClick('facebook', location);
   window.open("https://facebook.com/lenahanaidan", "_blank");
 }
 
@@ -95,7 +109,11 @@ function toggleContactDropdown() {
   const dropdown = document.getElementById('contactDropdown');
   const icon = document.getElementById('contactIcon');
   const isActive = dropdown.classList.toggle('active');
-  
+
+  if (isActive) {
+    trackEvent('contact_dropdown_open');
+  }
+
   // Swap icon with fade effect
   if (isActive) {
     icon.style.opacity = '0';
@@ -183,6 +201,7 @@ window.addEventListener('hashchange', handleContactHash);
 
 // GPS Modal Functions
 function openGPSModal() {
+  trackEvent('gps_info_view');
   const modal = document.getElementById('gpsModal');
   modal.style.display = 'block';
   // Prevent body scroll when modal is open
@@ -216,7 +235,9 @@ function toggleReview(button) {
   const reviewCard = button.closest('.review-card');
   const ellipsis = reviewCard.querySelector('.review-preview:last-of-type');
   const fullText = reviewCard.querySelector('.review-full');
-  
+
+  trackEvent('review_toggle', { action: fullText.style.display === 'none' ? 'expand' : 'collapse' });
+
   if (fullText.style.display === 'none') {
     // Expand to show full review
     ellipsis.style.display = 'none';
