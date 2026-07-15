@@ -69,30 +69,23 @@ header {
   position: relative;
 }
 
-.logo-link {
+.header-favicon {
   position: absolute;
   left: 1rem;
   top: 1rem;
   height: 60%;
   width: auto;
-  display: block;
   transition: opacity 0.3s ease;
 }
 
-.logo-link img {
-  height: 100%;
-  width: auto;
-  display: block;
-}
-
 /* Analytics opt-out indicator: 2s flash on hover-logo + Esc (see script.js) */
-.logo-link.logo-flash-red {
+.header-favicon.logo-flash-red {
   outline: 3px solid #e74c3c;
   outline-offset: 3px;
   border-radius: 6px;
 }
 
-.logo-link.logo-flash-green {
+.header-favicon.logo-flash-green {
   outline: 3px solid #2ecc71;
   outline-offset: 3px;
   border-radius: 6px;
@@ -679,7 +672,7 @@ footer a:hover {
     font-size: 2rem;
   }
 
-  .logo-link {
+  .header-favicon {
     height: 48%;
     left: 0.1rem;
     top: 0.75rem;
@@ -767,7 +760,7 @@ footer a:hover {
     right: 0.75rem;
   }
 
-  .logo-link {
+  .header-favicon {
     height: 38%;
     left: 0;
     top: 0.5rem;
