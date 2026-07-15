@@ -9,6 +9,30 @@ function trackContactClick(method, location) {
   trackEvent('contact_click', { method, link_location: location });
 }
 
+// Logo hover + Esc: opt out of Google Analytics for this browser tab's session.
+// Uses gtag's documented window['ga-disable-<ID>'] flag, persisted via
+// sessionStorage so it's re-applied (see the inline <head> script) on every
+// page load in this tab until the tab is closed. No backend involved, and
+// it can't target by IP -- that would require server-side blocking.
+const GA_MEASUREMENT_ID = 'G-BNM5R1YZEC';
+let logoHovered = false;
+
+function initLogoOptOut() {
+  const logoLink = document.querySelector('.logo-link');
+  if (!logoLink) return;
+
+  logoLink.addEventListener('mouseenter', () => { logoHovered = true; });
+  logoLink.addEventListener('mouseleave', () => { logoHovered = false; });
+}
+
+window.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape' && logoHovered) {
+    window[`ga-disable-${GA_MEASUREMENT_ID}`] = true;
+    sessionStorage.setItem('ga_opt_out', 'true');
+    console.log('Analytics tracking disabled for this browser tab.');
+  }
+});
+
 // Theme Toggle Functionality
 function toggleTheme() {
   const root = document.documentElement;
@@ -231,7 +255,8 @@ window.addEventListener('click', function(event) {
 
 // Close modal with Escape key
 window.addEventListener('keydown', function(event) {
-  if (event.key === 'Escape') {
+  const modal = document.getElementById('gpsModal');
+  if (event.key === 'Escape' && modal && modal.style.display === 'block') {
     closeGPSModal();
   }
 });
@@ -262,4 +287,5 @@ document.addEventListener('DOMContentLoaded', function() {
   loadTheme();
   generateCollage();
   handleContactHash();
+  initLogoOptOut();
 });
