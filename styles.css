@@ -85,6 +85,19 @@ header {
   display: block;
 }
 
+/* Analytics opt-out indicator: 2s flash on hover-logo + Esc (see script.js) */
+.logo-link.logo-flash-red {
+  outline: 3px solid #e74c3c;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.logo-link.logo-flash-green {
+  outline: 3px solid #2ecc71;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
 .header-content h1 {
   font-size: 2.5rem;
   font-weight: 700;
