@@ -27,20 +27,20 @@ function initLogoOptOut() {
 }
 
 function flashLogo(color) {
-  const logoLink = document.querySelector('.logo-link');
-  if (!logoLink) return;
+  const logoImg = document.getElementById('logoImg');
+  if (!logoImg) return;
 
   const flashClass = color === 'green' ? 'logo-flash-green' : 'logo-flash-red';
 
-  logoLink.classList.remove('logo-flash-red', 'logo-flash-green');
+  logoImg.classList.remove('logo-flash-red', 'logo-flash-green');
   if (logoFlashTimeout) clearTimeout(logoFlashTimeout);
 
   // Force reflow so re-triggering the same color still restarts the flash
-  void logoLink.offsetWidth;
-  logoLink.classList.add(flashClass);
+  void logoImg.offsetWidth;
+  logoImg.classList.add(flashClass);
 
   logoFlashTimeout = setTimeout(() => {
-    logoLink.classList.remove(flashClass);
+    logoImg.classList.remove(flashClass);
     logoFlashTimeout = null;
   }, 2000);
 }
