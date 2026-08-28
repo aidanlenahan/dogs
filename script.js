@@ -121,7 +121,12 @@ const dogImages = [
   { src: `${imageDir}/chuck.jpg`, alt: 'Chuck' },
   { src: `${imageDir}/nala.jpg`, alt: 'Nala' },
   { src: `${imageDir}/nalaz.jpg`, alt: 'Nala' },
-  { src: `${imageDir}/stella1.jpg`, alt: 'Stella' }
+  { src: `${imageDir}/stella1.jpg`, alt: 'Stella' },
+  { src: `${imageDir}/bordercollie.jpg`, alt: 'Border Collie' },
+  { src: `${imageDir}/shepherdmix.jpg`, alt: 'Shepherd mix' },
+  { src: `${imageDir}/bernese.jpg`, alt: 'Bernese Mountain Dog' },
+  { src: `${imageDir}/cavalier.jpg`, alt: 'Cavalier mix' },
+  { src: `${imageDir}/cockapoo.jpg`, alt: 'Cockapoo' }
 ];
 
 // Function to generate a random collage of images
