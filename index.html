@@ -25,6 +25,7 @@
     "url": "https://dogs.aidanlenahan.com",
     "description": "Professional dog walking services in Hoboken, NJ and Monmouth County, NJ. 6+ years experience, 50+ happy dogs walked. Trusted, reliable care for your furry family member.",
     "email": "aidan@aidanlenahan.com",
+    "priceRange": "$23-$45",
     "areaServed": [
       {
         "@type": "AdministrativeArea",
@@ -67,6 +68,10 @@
       </a>
       <h1>Lenahan Dog Services</h1>
       <p class="tagline">Trusted, local, reliable dog walking for your furry family member</p>
+      <nav class="site-nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="pricing.html">Pricing</a>
+      </nav>
       <div class="contact-dropdown">
         <button class="contact-icon-btn" onclick="toggleContactDropdown()" aria-label="Contact">
           <img id="contactIcon" src="img/icons/contact.svg" alt="Contact" />
@@ -79,6 +84,10 @@
           <a href="https://facebook.com/lenahanaidan" target="_blank" class="dropdown-item" onclick="trackContactClick('facebook', 'dropdown')">
             <span class="dropdown-label">Facebook</span>
             <span class="dropdown-value">facebook.com/lenahanaidan</span>
+          </a>
+          <a href="https://venmo.com/u/Aidan-Lenahan" target="_blank" class="dropdown-item" onclick="trackContactClick('venmo', 'dropdown')">
+            <span class="dropdown-label">Venmo</span>
+            <span class="dropdown-value">@Aidan-Lenahan</span>
           </a>
         </div>
       </div>
@@ -108,7 +117,7 @@
         <h2>About Me</h2>
         <p>Hello, my name is <strong>Aidan Lenahan</strong>. I am a freshman at the <strong>Stevens Institute of Technology in Hoboken</strong>. Since 2020, I've walked over <strong>50 dogs</strong> and have loved every moment of it. My genuine passion for dogs drives everything I do. I have experience with dogs of all sizes—from small breeds to dogs as heavy as 120 lbs—and have handled up to 4 dogs at a time.</p>
         <p>Your dog's safety, happiness, and exercise are my top priorities. I treat every dog I walk like my own, like family.</p>
-        <p>I offer competitive pricing and a very flexible schedule to those in <strong>Hoboken, NJ</strong> and the <strong>Monmouth County, NJ Peninsula area</strong> with the most dedicated care.</p>
+        <p>I offer competitive pricing and a very flexible schedule — based in <strong>Hoboken, NJ</strong> during the school year and <strong>Monmouth County, NJ</strong> over the summer — with the most dedicated care for clients in both areas.</p>
       </div>
 
       <div class="services-section">
@@ -132,6 +141,7 @@
             <p>After each walk, you can opt in to receive a GPS map of your dog's route and activity.</p>
           </div>
         </div>
+        <p class="section-link"><a href="pricing.html">See full pricing &rarr;</a></p>
       </div>
 
       
@@ -174,6 +184,7 @@
   </main>
 
   <footer>
+    <p><a href="mailto:aidan@aidanlenahan.com" onclick="trackContactClick('email', 'footer')">aidan@aidanlenahan.com</a></p>
     <p>&copy; 2026 Lenahan Dog Services. All rights reserved. <a href="https://aidanlenahan.com" target="_blank" rel="noopener noreferrer" onclick="trackOutboundClick('aidanlenahan_com')">Back to aidanlenahan.com</a> &middot; <a href="privacy.html">Privacy Policy</a></p>
   </footer>
 
