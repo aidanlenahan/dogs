@@ -4,6 +4,10 @@
   padding: 0;
 }
 
+img {
+  max-width: 100%;
+}
+
 :root {
   /* Dark mode colors (default) */
   --bg-primary: #1a2332;
@@ -318,8 +322,8 @@ header {
 }
 
 .about-headshot {
-  width: 160px;
-  height: 160px;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
   border-radius: 50%;
   box-shadow: 0 4px 12px var(--shadow-heavy);
@@ -874,8 +878,8 @@ footer a:hover {
   }
 
   .about-headshot {
-    width: 120px;
-    height: 120px;
+    width: 90px;
+    height: 90px;
   }
 
   .modal-content {
