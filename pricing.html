@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Honor this tab's analytics opt-out (set via logo hover + Esc) before gtag loads -->
+  <script>
+    if (sessionStorage.getItem('ga_opt_out') === 'true') {
+      window['ga-disable-G-BNM5R1YZEC'] = true;
+    }
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BNM5R1YZEC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-BNM5R1YZEC');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dog walking rates for Lenahan Dog Services in Hoboken, NJ and Monmouth County, NJ &mdash; 30 and 60 minute walks, recurring walk discounts, and additional dog pricing.">
+  <meta name="keywords" content="dog walking prices, dog walker rates, Hoboken, Monmouth County, NJ, pet care pricing">
+  <meta property="og:title" content="Pricing - Lenahan Dog Services">
+  <meta property="og:description" content="Dog walking rates in Hoboken, NJ and Monmouth County, NJ. 30 and 60 minute walks, recurring discounts, and more.">
+  <meta property="og:url" content="https://dogs.aidanlenahan.com/pricing.html">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Pricing - Lenahan Dog Services</title>
+</head>
+<body>
+
+  <header>
+    <div class="header-content">
+      <a href="./" class="logo-link" aria-label="Lenahan Dog Services home" onclick="trackEvent('logo_click')">
+        <img src="favicon.png" alt="Lenahan Dog Services" class="header-favicon" id="logoImg">
+      </a>
+      <h1>Lenahan Dog Services</h1>
+      <p class="tagline">Trusted, local, reliable dog walking</p>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="pricing.html" class="active">Pricing</a>
+      </nav>
+      <div class="contact-dropdown">
+        <button class="contact-icon-btn" onclick="toggleContactDropdown()" aria-label="Contact">
+          <img id="contactIcon" src="img/icons/contact.svg" alt="Contact" />
+        </button>
+        <div class="contact-dropdown-menu" id="contactDropdown">
+          <a href="mailto:aidan@aidanlenahan.com" class="dropdown-item" onclick="trackContactClick('email', 'dropdown')">
+            <span class="dropdown-label">Email</span>
+            <span class="dropdown-value">aidan@aidanlenahan.com</span>
+          </a>
+          <a href="https://facebook.com/lenahanaidan" target="_blank" class="dropdown-item" onclick="trackContactClick('facebook', 'dropdown')">
+            <span class="dropdown-label">Facebook</span>
+            <span class="dropdown-value">facebook.com/lenahanaidan</span>
+          </a>
+          <a href="https://venmo.com/u/Aidan-Lenahan" target="_blank" class="dropdown-item" onclick="trackContactClick('venmo', 'dropdown')">
+            <span class="dropdown-label">Venmo</span>
+            <span class="dropdown-value">@Aidan-Lenahan</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="content-container">
+    <section class="main-section">
+      <div class="about-section">
+        <h2>Pricing</h2>
+        <div class="pricing-cards">
+          <div class="pricing-card">
+            <div class="price-amount">$25</div>
+            <h3>30-Minute Walk</h3>
+            <p>A solid stretch of one-on-one exercise and attention for your dog.</p>
+          </div>
+          <div class="pricing-card">
+            <div class="price-amount">$45</div>
+            <h3>60-Minute Walk</h3>
+            <p>Extra time outside for dogs who need more exercise or a longer route.</p>
+          </div>
+          <div class="pricing-card featured">
+            <div class="price-amount">$23<span>/walk</span></div>
+            <h3>Recurring (3+ walks/week)</h3>
+            <p>A discounted rate for regulars on a recurring weekly schedule.</p>
+          </div>
+          <div class="pricing-card">
+            <div class="price-amount">+$8</div>
+            <h3>Additional Dog</h3>
+            <p>Added to any walk when I'm taking out more than one of your dogs at a time.</p>
+          </div>
+        </div>
+        <p class="pricing-note">Payment is via Venmo only (<strong>@Aidan-Lenahan</strong>). Rates may vary slightly based on location, dog size, and schedule &mdash; <a href="mailto:aidan@aidanlenahan.com">email me</a> for a custom quote.</p>
+      </div>
+
+      <div class="cta-section">
+        <h2>Ready to Book a Walk?</h2>
+        <p>Get in touch to discuss your dog walking needs</p>
+        <div class="button-container">
+          <button class="custom-btn" onclick="email('pricing_cta')">Email Me</button>
+          <button class="nav-btn" onclick="fb('pricing_cta')">Facebook</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><a href="mailto:aidan@aidanlenahan.com" onclick="trackContactClick('email', 'footer')">aidan@aidanlenahan.com</a></p>
+    <p>&copy; 2026 Lenahan Dog Services. All rights reserved. <a href="https://aidanlenahan.com" target="_blank" rel="noopener noreferrer" onclick="trackOutboundClick('aidanlenahan_com')">Back to aidanlenahan.com</a> &middot; <a href="privacy.html">Privacy Policy</a></p>
+  </footer>
+
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light mode">
+    <img id="themeIcon" src="img/icons/light.png" alt="Toggle theme" />
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
