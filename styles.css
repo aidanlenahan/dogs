@@ -315,24 +315,20 @@ header {
   margin-bottom: 1.5rem;
 }
 
-.about-content {
-  display: flex;
-  gap: 2rem;
-  align-items: flex-start;
+.about-section {
+  /* Contains the floated headshot so the card background wraps it */
+  overflow: hidden;
 }
 
 .about-headshot {
-  width: 120px;
-  height: 120px;
+  float: left;
+  width: 64px;
+  height: 64px;
   object-fit: cover;
   border-radius: 50%;
   box-shadow: 0 4px 12px var(--shadow-heavy);
-  flex-shrink: 0;
-}
-
-.about-text {
-  flex: 1;
-  min-width: 0;
+  margin: 0.25rem 1rem 0.5rem 0;
+  shape-outside: circle(50%);
 }
 
 .about-section p {
@@ -870,16 +866,10 @@ footer a:hover {
     gap: 1rem;
   }
 
-  .about-content {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 1rem;
-  }
-
   .about-headshot {
-    width: 90px;
-    height: 90px;
+    width: 52px;
+    height: 52px;
+    margin: 0.2rem 0.75rem 0.5rem 0;
   }
 
   .modal-content {
