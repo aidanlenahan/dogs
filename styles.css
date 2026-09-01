@@ -321,13 +321,14 @@ header {
 }
 
 .about-headshot {
-  float: left;
-  width: 64px;
-  height: 64px;
+  float: right;
+  /* Fluid size: ~114px on a phone, scaling up to 170px on desktop */
+  width: clamp(100px, 9vw + 75px, 170px);
+  height: clamp(100px, 9vw + 75px, 170px);
   object-fit: cover;
   border-radius: 50%;
   box-shadow: 0 4px 12px var(--shadow-heavy);
-  margin: 0.25rem 1rem 0.5rem 0;
+  margin: 0 0 0.75rem 1.25rem;
   shape-outside: circle(50%);
 }
 
@@ -864,12 +865,6 @@ footer a:hover {
   .collage-container {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-  }
-
-  .about-headshot {
-    width: 52px;
-    height: 52px;
-    margin: 0.2rem 0.75rem 0.5rem 0;
   }
 
   .modal-content {
