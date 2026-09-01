@@ -317,10 +317,83 @@ function toggleReview(button) {
   }
 }
 
+// Shrink the header contact icon just enough to stop it overlapping the title.
+// Icon is right-anchored (position: absolute; right: 1rem), so shrinking it
+// automatically opens up room between it and the h1 as its own width shrinks.
+const CONTACT_ICON_MAX = 24;
+const CONTACT_ICON_MIN = 12;
+const CONTACT_ICON_GAP = 4; // smallest gap allowed between title and icon
+
+function fitContactIcon() {
+  const h1 = document.querySelector('.header-content h1');
+  const btn = document.querySelector('.contact-icon-btn');
+  if (!h1 || !btn) return;
+
+  // Reset both to their CSS-defined sizes before measuring, so repeated
+  // calls (e.g. on resize) don't compound previous shrinking.
+  h1.style.removeProperty('font-size');
+  let size = CONTACT_ICON_MAX;
+  btn.style.setProperty('--icon-size', `${size}px`);
+
+  // h1 is a block element and spans the full header width regardless of
+  // text length, so measure the rendered text itself via a Range instead
+  // of h1.getBoundingClientRect().
+  const textRange = document.createRange();
+  textRange.selectNodeContents(h1);
+
+  for (let i = 0; i < CONTACT_ICON_MAX - CONTACT_ICON_MIN; i++) {
+    const textRect = textRange.getBoundingClientRect();
+    const btnRect = btn.getBoundingClientRect();
+    const gap = btnRect.left - textRect.right;
+    if (gap >= CONTACT_ICON_GAP || size <= CONTACT_ICON_MIN) break;
+    size -= 1;
+    btn.style.setProperty('--icon-size', `${size}px`);
+  }
+
+  // On very narrow screens the title alone can be wider than the space
+  // left after the icon is already at its floor size. As a last resort,
+  // nudge the title down slightly too (never below 70% of its CSS size)
+  // so the two never actually overlap.
+  const baseFontSize = parseFloat(getComputedStyle(h1).fontSize);
+  const fontFloor = baseFontSize * 0.7;
+  let fontSize = baseFontSize;
+  for (let i = 0; i < 40; i++) {
+    const textRect = textRange.getBoundingClientRect();
+    const btnRect = btn.getBoundingClientRect();
+    const gap = btnRect.left - textRect.right;
+    if (gap >= CONTACT_ICON_GAP || fontSize <= fontFloor) break;
+    fontSize -= 1;
+    h1.style.fontSize = `${fontSize}px`;
+  }
+}
+
+let contactIconResizeTimeout = null;
+function scheduleFitContactIcon() {
+  if (contactIconResizeTimeout) clearTimeout(contactIconResizeTimeout);
+  contactIconResizeTimeout = setTimeout(fitContactIcon, 100);
+}
+
+// Nudge the stats bar left/right on load, but only if it's actually wider
+// than the viewport, as a subtle hint that it scrolls horizontally.
+function initStatsScrollHint() {
+  const el = document.querySelector('.stats-container');
+  if (!el) return;
+  if (el.scrollWidth <= el.clientWidth + 1) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  el.classList.add('scroll-hint');
+  el.addEventListener('animationend', () => el.classList.remove('scroll-hint'), { once: true });
+}
+
 // Generate the collage on page load and handle #contact hash
 document.addEventListener('DOMContentLoaded', function() {
   loadTheme();
   generateCollage();
   handleContactHash();
   initLogoOptOut();
+  fitContactIcon();
+  initStatsScrollHint();
 });
+
+window.addEventListener('load', fitContactIcon);
+window.addEventListener('resize', scheduleFitContactIcon);
