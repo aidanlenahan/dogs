@@ -148,10 +148,11 @@ header {
 }
 
 .contact-icon-btn {
+  --icon-size: 24px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: calc(var(--icon-size) / 3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -163,8 +164,8 @@ header {
 }
 
 .contact-icon-btn img {
-  width: 24px;
-  height: 24px;
+  width: var(--icon-size);
+  height: var(--icon-size);
   filter: brightness(0) invert(1);
   opacity: 0.9;
   transition: opacity 0.15s ease;
@@ -215,6 +216,11 @@ header {
   background-color: var(--bg-primary);
 }
 
+/* Non-link info rows (e.g. Zelle) shouldn't look clickable */
+div.dropdown-item:hover {
+  background-color: transparent;
+}
+
 .dropdown-label {
   font-size: 0.8rem;
   font-weight: 600;
@@ -259,6 +265,17 @@ header {
   flex-wrap: wrap;
   max-width: 900px;
   margin: 0 auto;
+}
+
+@keyframes stats-scroll-hint {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-14px); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .stats-container.scroll-hint {
+    animation: stats-scroll-hint 0.6s ease-in-out 2;
+  }
 }
 
 .stat {
@@ -792,6 +809,10 @@ footer a:hover {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  header {
+    padding: 1.5rem 1rem;
+  }
+
   .contact-dropdown {
     top: 1rem;
     right: 1rem;
@@ -888,6 +909,10 @@ footer a:hover {
 }
 
 @media (max-width: 480px) {
+  header {
+    padding: 1.25rem 0.75rem;
+  }
+
   .contact-dropdown {
     top: 0.75rem;
     right: 0.75rem;
