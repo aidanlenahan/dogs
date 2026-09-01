@@ -23,6 +23,7 @@ img {
   --text-tertiary: #8b92a3;
   --text-header: #ffffff;
   --border-color: #364259;
+  --link-color: #7fb2ff;
   --shadow-light: rgba(0,0,0,0.3);
   --shadow-medium: rgba(0,0,0,0.4);
   --shadow-heavy: rgba(0,0,0,0.5);
@@ -43,6 +44,7 @@ img {
   --text-tertiary: #666;
   --text-header: #ffffff;
   --border-color: #e8e8e8;
+  --link-color: #0b57d0;
   --shadow-light: rgba(0,0,0,0.05);
   --shadow-medium: rgba(0,0,0,0.08);
   --shadow-heavy: rgba(0,0,0,0.1);
@@ -504,6 +506,17 @@ div.dropdown-item:hover {
   color: var(--text-tertiary);
   margin-top: 2rem;
   line-height: 1.7;
+}
+
+.pricing-note a {
+  color: var(--link-color);
+  font-weight: 600;
+  text-decoration: underline;
+  transition: opacity 0.2s ease;
+}
+
+.pricing-note a:hover {
+  opacity: 0.75;
 }
 
 /* Modal Styles */
