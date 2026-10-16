@@ -88,45 +88,41 @@ function toggleTheme() {
   }, 150);
 }
 
-// Load saved theme preference on page load
+// The saved theme class is applied by an inline <head> script before first
+// paint; this just syncs the toggle icon to match.
 function loadTheme() {
-  const savedTheme = localStorage.getItem('theme');
-  const root = document.documentElement;
   const themeIcon = document.getElementById('themeIcon');
-  
-  // Default to dark mode, only switch to light if explicitly saved
-  if (savedTheme === 'light') {
-    root.classList.add('light-mode');
-    if (themeIcon) {
-      themeIcon.src = 'img/icons/dark.png';
-    }
+  if (themeIcon && document.documentElement.classList.contains('light-mode')) {
+    themeIcon.src = 'img/icons/dark.png';
   }
 }
 
-// Define the image directory path
-const imageDir = './img';
+// Web-sized copies of the originals in img/ (800px on the short side, WebP).
+// Add a matching file here whenever a new photo goes in -- the camera
+// originals are 1-8 MB each and far too heavy to serve directly.
+const imageDir = './img/gallery';
 
 // List of all dog images
 const dogImages = [
-  { src: `${imageDir}/rosco.jpeg`, alt: 'Rosco' },
-  { src: `${imageDir}/stella.jpg`, alt: 'Stella' },
-  { src: `${imageDir}/reef.jpg`, alt: 'Reef' },
-  { src: `${imageDir}/mak.jpeg`, alt: 'Mak' },
-  { src: `${imageDir}/makreef.jpeg`, alt: 'Mak and Reef' },
-  { src: `${imageDir}/lady.jpeg`, alt: 'Lady' },
-  { src: `${imageDir}/lola.jpg`, alt: 'Lola' },
-  { src: `${imageDir}/ziggy.jpg`, alt: 'Ziggy' },
-  { src: `${imageDir}/bruno.jpg`, alt: 'Bruno' },
-  { src: `${imageDir}/charlie.jpeg`, alt: 'Charlie' },
-  { src: `${imageDir}/chuck.jpg`, alt: 'Chuck' },
-  { src: `${imageDir}/nala.jpg`, alt: 'Nala' },
-  { src: `${imageDir}/nalaz.jpg`, alt: 'Nala' },
-  { src: `${imageDir}/stella1.jpg`, alt: 'Stella' },
-  { src: `${imageDir}/bordercollie.jpg`, alt: 'Border Collie' },
-  { src: `${imageDir}/shepherdmix.jpg`, alt: 'Shepherd mix' },
-  { src: `${imageDir}/bernese.jpg`, alt: 'Bernese Mountain Dog' },
-  { src: `${imageDir}/cavalier.jpg`, alt: 'Cavalier mix' },
-  { src: `${imageDir}/cockapoo.jpg`, alt: 'Cockapoo' }
+  { src: `${imageDir}/rosco.webp`, alt: 'Rosco' },
+  { src: `${imageDir}/stella.webp`, alt: 'Stella' },
+  { src: `${imageDir}/reef.webp`, alt: 'Reef' },
+  { src: `${imageDir}/mak.webp`, alt: 'Mak' },
+  { src: `${imageDir}/makreef.webp`, alt: 'Mak and Reef' },
+  { src: `${imageDir}/lady.webp`, alt: 'Lady' },
+  { src: `${imageDir}/lola.webp`, alt: 'Lola' },
+  { src: `${imageDir}/ziggy.webp`, alt: 'Ziggy' },
+  { src: `${imageDir}/bruno.webp`, alt: 'Bruno' },
+  { src: `${imageDir}/charlie.webp`, alt: 'Charlie' },
+  { src: `${imageDir}/chuck.webp`, alt: 'Chuck' },
+  { src: `${imageDir}/nala.webp`, alt: 'Nala' },
+  { src: `${imageDir}/nalaz.webp`, alt: 'Nala' },
+  { src: `${imageDir}/stella1.webp`, alt: 'Stella' },
+  { src: `${imageDir}/bordercollie.webp`, alt: 'Border Collie' },
+  { src: `${imageDir}/shepherdmix.webp`, alt: 'Shepherd mix' },
+  { src: `${imageDir}/bernese.webp`, alt: 'Bernese Mountain Dog' },
+  { src: `${imageDir}/cavalier.webp`, alt: 'Cavalier mix' },
+  { src: `${imageDir}/cockapoo.webp`, alt: 'Cockapoo' }
 ];
 
 // Function to generate a random collage of images
@@ -135,122 +131,68 @@ function generateCollage() {
   
   if (!collageContainer) return;
 
-  // Randomly shuffle the images and select 4
-  const shuffledImages = [...dogImages]
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 4);
+  // Pick 4 random images (Fisher-Yates; sort() with a random comparator is biased)
+  const shuffledImages = [...dogImages];
+  for (let i = shuffledImages.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledImages[i], shuffledImages[j]] = [shuffledImages[j], shuffledImages[i]];
+  }
 
   // Create and append image elements
-  shuffledImages.forEach(image => {
+  shuffledImages.slice(0, 4).forEach(image => {
     const imgElement = document.createElement('img');
     imgElement.src = image.src;
     imgElement.alt = image.alt;
+    imgElement.width = 800;
+    imgElement.height = 800;
+    imgElement.decoding = 'async';
     imgElement.classList.add('collage-image');
     imgElement.loading = 'lazy';
     collageContainer.appendChild(imgElement);
   });
 }
 
-// Email function
-function email(location = 'cta') {
-  trackContactClick('email', location);
-  window.location.href = "mailto:aidan@aidanlenahan.com";
+// Open/close the contact dropdown, swapping the icon with a fade
+function setContactDropdown(open) {
+  const dropdown = document.getElementById('contactDropdown');
+  const button = document.querySelector('.contact-icon-btn');
+  const icon = document.getElementById('contactIcon');
+  if (!dropdown || dropdown.classList.contains('active') === open) return;
+
+  dropdown.classList.toggle('active', open);
+  button.setAttribute('aria-expanded', String(open));
+  icon.style.opacity = '0';
+  setTimeout(() => {
+    icon.src = open ? 'img/icons/close.png' : 'img/icons/contact.svg';
+    icon.style.opacity = '1';
+  }, 150);
 }
 
-// Facebook navigation function
-function fb(location = 'cta') {
-  trackContactClick('facebook', location);
-  window.open("https://facebook.com/lenahanaidan", "_blank");
-}
-
-// Toggle contact dropdown with icon swap
 function toggleContactDropdown() {
   const dropdown = document.getElementById('contactDropdown');
-  const icon = document.getElementById('contactIcon');
-  const isActive = dropdown.classList.toggle('active');
-
-  if (isActive) {
-    trackEvent('contact_dropdown_open');
-  }
-
-  // Swap icon with fade effect
-  if (isActive) {
-    icon.style.opacity = '0';
-    setTimeout(() => {
-      icon.src = 'img/icons/close.png';
-      icon.style.opacity = '1';
-    }, 150);
-  } else {
-    icon.style.opacity = '0';
-    setTimeout(() => {
-      icon.src = 'img/icons/contact.svg';
-      icon.style.opacity = '1';
-    }, 150);
-  }
-}
-
-// Open contact dropdown (for links)
-function openContactDropdown(event) {
-  event.preventDefault();
-  const dropdown = document.getElementById('contactDropdown');
-  const icon = document.getElementById('contactIcon');
-  
-  if (!dropdown.classList.contains('active')) {
-    dropdown.classList.add('active');
-    icon.style.opacity = '0';
-    setTimeout(() => {
-      icon.src = 'img/icons/close.png';
-      icon.style.opacity = '1';
-    }, 150);
-  }
-  
-  // Scroll to top smoothly
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  const open = !dropdown.classList.contains('active');
+  if (open) trackEvent('contact_dropdown_open');
+  setContactDropdown(open);
 }
 
 // Close dropdown when clicking outside
 document.addEventListener('click', function(event) {
   const dropdown = document.getElementById('contactDropdown');
   const button = document.querySelector('.contact-icon-btn');
-  const contactLinks = document.querySelectorAll('.contact-link');
-  
-  // Check if click is on a contact link
-  let isContactLink = false;
-  contactLinks.forEach(link => {
-    if (link.contains(event.target)) {
-      isContactLink = true;
-    }
-  });
-  
-  if (dropdown && !dropdown.contains(event.target) && !button.contains(event.target) && !isContactLink) {
-    if (dropdown.classList.contains('active')) {
-      dropdown.classList.remove('active');
-      const icon = document.getElementById('contactIcon');
-      icon.style.opacity = '0';
-      setTimeout(() => {
-        icon.src = 'img/icons/contact.svg';
-        icon.style.opacity = '1';
-      }, 150);
-    }
+  if (dropdown && !dropdown.contains(event.target) && !button.contains(event.target)) {
+    setContactDropdown(false);
   }
+});
+
+// Close dropdown with Escape key
+window.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') setContactDropdown(false);
 });
 
 // Handle #contact URL hash
 function handleContactHash() {
-  if (window.location.hash === '#contact') {
-    const dropdown = document.getElementById('contactDropdown');
-    const icon = document.getElementById('contactIcon');
-    
-    if (!dropdown.classList.contains('active')) {
-      dropdown.classList.add('active');
-      icon.style.opacity = '0';
-      setTimeout(() => {
-        icon.src = 'img/icons/close.png';
-        icon.style.opacity = '1';
-      }, 150);
-    }
-    
-    // Scroll to top smoothly
+  if (window.location.hash === '#contact' && document.getElementById('contactDropdown')) {
+    setContactDropdown(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
@@ -259,12 +201,27 @@ function handleContactHash() {
 window.addEventListener('hashchange', handleContactHash);
 
 // GPS Modal Functions
+let gpsModalOpener = null;
+
+// Strava's embed script (and its cookies) only loads once someone actually
+// opens the GPS modal; it renders any placeholders as soon as it runs.
+function loadStravaEmbed() {
+  if (document.getElementById('stravaEmbedScript')) return;
+  const script = document.createElement('script');
+  script.id = 'stravaEmbedScript';
+  script.src = 'https://strava-embeds.com/embed.js';
+  document.body.appendChild(script);
+}
+
 function openGPSModal() {
   trackEvent('gps_info_view');
   const modal = document.getElementById('gpsModal');
+  loadStravaEmbed();
+  gpsModalOpener = document.activeElement;
   modal.style.display = 'block';
   // Prevent body scroll when modal is open
   document.body.style.overflow = 'hidden';
+  modal.querySelector('.modal-close').focus();
 }
 
 function closeGPSModal() {
@@ -272,7 +229,8 @@ function closeGPSModal() {
   const modal = document.getElementById('gpsModal');
   modal.style.display = 'none';
   // Restore body scroll
-  document.body.style.overflow = 'auto';
+  document.body.style.overflow = '';
+  if (gpsModalOpener) gpsModalOpener.focus();
 }
 
 // Outbound link click tracking
