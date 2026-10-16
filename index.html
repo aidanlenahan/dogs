@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Honor this tab's analytics opt-out (set via logo hover + Esc) before gtag loads -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Apply the saved theme before first paint (no dark flash for light-mode
+       users), and honor this tab's analytics opt-out (set via logo hover + Esc)
+       before gtag loads -->
   <script>
-    if (sessionStorage.getItem('ga_opt_out') === 'true') {
-      window['ga-disable-G-BNM5R1YZEC'] = true;
-    }
+    try {
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.classList.add('light-mode');
+      }
+      if (sessionStorage.getItem('ga_opt_out') === 'true') {
+        window['ga-disable-G-BNM5R1YZEC'] = true;
+      }
+    } catch (e) {}
   </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BNM5R1YZEC"></script>
@@ -15,7 +24,6 @@
     gtag('js', new Date());
 
     gtag('config', 'G-BNM5R1YZEC');
-    
   </script>
   <script type="application/ld+json">
   {
@@ -23,7 +31,9 @@
     "@type": "LocalBusiness",
     "name": "Lenahan Dog Services",
     "url": "https://dogs.aidanlenahan.com",
-    "description": "Professional dog walking services in Hoboken, NJ and Monmouth County, NJ. 6+ years experience, 50+ happy dogs walked. Trusted, reliable care.",
+    "image": "https://dogs.aidanlenahan.com/img/og-image.jpg",
+    "logo": "https://dogs.aidanlenahan.com/favicon.png",
+    "description": "Professional dog walking services in Hoboken, NJ and Monmouth County, NJ. 6+ years experience, 60+ happy dogs walked. Trusted, reliable care.",
     "email": "aidan@aidanlenahan.com",
     "priceRange": "$23-$45",
     "areaServed": [
@@ -46,15 +56,20 @@
     "serviceType": "Dog Walking Service"
   }
   </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Professional dog walking services in Hoboken, NJ and Monmouth County, NJ. 6+ years experience, 50+ happy dogs walked. Trusted, reliable care for your furry family member.">
+  <meta name="description" content="Professional dog walking services in Hoboken, NJ and Monmouth County, NJ. 6+ years experience, 60+ happy dogs walked. Trusted, reliable care for your furry family member.">
   <meta name="keywords" content="dog walking, Hoboken, Monmouth County, NJ, pet care, dog walker, Red Bank, professional dog walking">
   <meta property="og:title" content="Lenahan Dog Services - Professional Dog Walking">
-  <meta property="og:description" content="Professional dog walking in Hoboken, NJ and Monmouth County, NJ. 6+ years experience with 50+ happy dogs.">
+  <meta property="og:description" content="Professional dog walking in Hoboken, NJ and Monmouth County, NJ. 6+ years experience with 60+ happy dogs.">
   <meta property="og:url" content="https://dogs.aidanlenahan.com">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://dogs.aidanlenahan.com/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://dogs.aidanlenahan.com/">
   <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <title>Lenahan Dog Services - Professional Dog Walking</title>
@@ -69,23 +84,23 @@
       <h1>Lenahan Dog Services</h1>
       <p class="tagline">Trusted, local, reliable dog walking</p>
       <nav class="site-nav">
-        <a href="index.html" class="active">Home</a>
+        <a href="./" class="active">Home</a>
         <a href="pricing.html">Pricing</a>
       </nav>
       <div class="contact-dropdown">
-        <button class="contact-icon-btn" onclick="toggleContactDropdown()" aria-label="Contact">
-          <img id="contactIcon" src="img/icons/contact.svg" alt="Contact" />
+        <button class="contact-icon-btn" onclick="toggleContactDropdown()" aria-label="Contact" aria-expanded="false" aria-controls="contactDropdown">
+          <img id="contactIcon" src="img/icons/contact.svg" alt="" />
         </button>
         <div class="contact-dropdown-menu" id="contactDropdown">
           <a href="mailto:aidan@aidanlenahan.com" class="dropdown-item" onclick="trackContactClick('email', 'dropdown')">
             <span class="dropdown-label">Email</span>
             <span class="dropdown-value">aidan@aidanlenahan.com</span>
           </a>
-          <a href="https://facebook.com/lenahanaidan" target="_blank" class="dropdown-item" onclick="trackContactClick('facebook', 'dropdown')">
+          <a href="https://facebook.com/lenahanaidan" target="_blank" rel="noopener noreferrer" class="dropdown-item" onclick="trackContactClick('facebook', 'dropdown')">
             <span class="dropdown-label">Facebook</span>
             <span class="dropdown-value">facebook.com/lenahanaidan</span>
           </a>
-          <a href="https://account.venmo.com/u/Aidan-Lenahan" target="_blank" class="dropdown-item" onclick="trackContactClick('venmo', 'dropdown')">
+          <a href="https://account.venmo.com/u/Aidan-Lenahan" target="_blank" rel="noopener noreferrer" class="dropdown-item" onclick="trackContactClick('venmo', 'dropdown')">
             <span class="dropdown-label">Venmo</span>
             <span class="dropdown-value">@Aidan-Lenahan</span>
           </a>
@@ -101,15 +116,15 @@
   <section class="hero">
     <div class="stats-container">
       <div class="stat">
-        <h2>50+</h2>
+        <p class="stat-number">60+</p>
         <p>Dogs Walked</p>
       </div>
       <div class="stat">
-        <h2>6+</h2>
+        <p class="stat-number">6+</p>
         <p>Years Experience</p>
       </div>
       <div class="stat">
-        <h2>120</h2>
+        <p class="stat-number">120</p>
         <p>Max Weight (lbs)</p>
       </div>
     </div>
@@ -123,7 +138,7 @@
           <img src="img/aidan-headshot.jpg" alt="Aidan Lenahan" class="about-headshot" loading="lazy" width="400" height="453">
         </picture>
         <h2>About Me</h2>
-        <p>Hello, my name is <strong>Aidan Lenahan</strong>. I am a freshman at the <strong>Stevens Institute of Technology in Hoboken</strong>. Since 2020, I've walked over <strong>50 dogs</strong> and have loved every moment of it. My genuine passion for dogs drives everything I do. I have experience with dogs of all sizes—from small breeds to dogs as heavy as 120 lbs—and have handled up to 4 dogs at a time.</p>
+        <p>Hello, my name is <strong>Aidan Lenahan</strong>. I am a freshman at the <strong>Stevens Institute of Technology in Hoboken</strong>. Since 2020, I've walked over <strong>60 dogs</strong> and have loved every moment of it. My genuine passion for dogs drives everything I do. I have experience with dogs of all sizes—from small breeds to dogs as heavy as 120 lbs—and have handled up to 4 dogs at a time.</p>
         <p>Your dog's safety, happiness, and exercise are my top priorities. I treat every dog I walk like my own, like family.</p>
         <p>I offer competitive pricing and a very flexible schedule — based in <strong>Hoboken, NJ</strong> during the school year and <strong>Monmouth County, NJ</strong> over the summer — with the most dedicated care for clients in both areas.</p>
       </div>
@@ -143,7 +158,7 @@
             <div class="service-card-header">
               <h3>GPS Tracking</h3>
               <button class="info-btn" onclick="openGPSModal()" aria-label="GPS Tracking Info">
-                <img src="img/icons/info.png" alt="Info" />
+                <img src="img/icons/info.png" alt="" />
               </button>
             </div>
             <p>After each walk, you can opt in to receive a GPS map of your dog's route and activity.</p>
@@ -152,7 +167,6 @@
         <p class="section-link"><a href="pricing.html">See full pricing &rarr;</a></p>
       </div>
 
-      
       <div class="gallery-section">
         <h2>Happy Dogs I've Walked</h2>
         <div class="collage-container">
@@ -184,8 +198,8 @@
         <h2>Ready to Book a Walk?</h2>
         <p>Get in touch to discuss your dog walking needs</p>
         <div class="button-container">
-          <button class="custom-btn" onclick="email()">Email Me</button>
-          <button class="nav-btn" onclick="fb()">Facebook</button>
+          <a class="custom-btn" href="mailto:aidan@aidanlenahan.com" onclick="trackContactClick('email', 'cta')">Email Me</a>
+          <a class="nav-btn" href="https://facebook.com/lenahanaidan" target="_blank" rel="noopener noreferrer" onclick="trackContactClick('facebook', 'cta')">Facebook</a>
         </div>
       </div>
     </section>
@@ -198,12 +212,12 @@
 
   <!-- Theme Toggle Button -->
   <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light mode">
-    <img id="themeIcon" src="img/icons/light.png" alt="Toggle theme" />
+    <img id="themeIcon" src="img/icons/light.png" alt="" />
   </button>
 
   <!-- GPS Tracking Info Modal -->
   <div id="gpsModal" class="modal">
-    <div class="modal-content">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-label="GPS tracking example">
       <button class="modal-close" onclick="closeGPSModal()" aria-label="Close modal">&times;</button>
       <p>If you opt-in, after each walk, you will receive an interactive GPS map similar to this one below. To interact fully with this, please <a href="https://www.strava.com/activities/17386078306" target="_blank" rel="noopener noreferrer" onclick="trackOutboundClick('strava_activity')">click here</a>.</p>
       <div class="strava-embed-container">
@@ -212,14 +226,6 @@
     </div>
   </div>
 
-  <script src="https://strava-embeds.com/embed.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
-
-<!-- TO DO:
-- Personal photo in about me
-- Implement client testimonials
-- Add more photos to the gallery
-
--->

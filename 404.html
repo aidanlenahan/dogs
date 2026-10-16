@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Honor this tab's analytics opt-out (set via logo hover + Esc) before gtag loads -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Apply the saved theme before first paint (no dark flash for light-mode
+       users), and honor this tab's analytics opt-out (set via logo hover + Esc)
+       before gtag loads -->
   <script>
-    if (sessionStorage.getItem('ga_opt_out') === 'true') {
-      window['ga-disable-G-BNM5R1YZEC'] = true;
-    }
+    try {
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.classList.add('light-mode');
+      }
+      if (sessionStorage.getItem('ga_opt_out') === 'true') {
+        window['ga-disable-G-BNM5R1YZEC'] = true;
+      }
+    } catch (e) {}
   </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BNM5R1YZEC"></script>
@@ -16,8 +25,7 @@
 
     gtag('config', 'G-BNM5R1YZEC');
   </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
   <script>
     (function () {
       var host = window.location.hostname;
@@ -32,6 +40,8 @@
     })();
   </script>
   <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <title>Page Not Found - Lenahan Dog Services</title>
@@ -54,8 +64,8 @@
         <h2 style="font-size: 3rem; margin-bottom: 1rem;">404</h2>
         <h3 style="margin-bottom: 1.5rem;">Page Not Found</h3>
         <p style="font-size: 1.2rem; margin-bottom: 2rem;">Oops! Looks like this page went for a walk and didn't come back.</p>
-        <div class="button-container" style="justify-content: center;">
-          <a href="./" class="custom-btn" style="display: inline-block; padding: 0.9rem 2rem; text-decoration: none;">Go Home</a>
+        <div class="button-container">
+          <a href="./" class="custom-btn">Go Home</a>
         </div>
       </div>
     </section>
