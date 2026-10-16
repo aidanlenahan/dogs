@@ -97,7 +97,9 @@ function loadTheme() {
   }
 }
 
-// Web-sized copies of the originals in img/ (800px on the short side, WebP).
+// Web-sized copies of the originals in img/originals/ (gitignored; 800x800 center crop, WebP q80).
+// The collage shows them square (object-fit: cover), so cropping up front
+// avoids downloading pixels that never get displayed.
 // Add a matching file here whenever a new photo goes in -- the camera
 // originals are 1-8 MB each and far too heavy to serve directly.
 const imageDir = './img/gallery';
